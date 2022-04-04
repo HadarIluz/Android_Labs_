@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingClass,MissingDefaultResource"
+    android:background="#2986cc">
+
+    <com.imankur.analogclockview.AnalogClock
+        android:layout_width="match_parent"
+        android:layout_height="329dp"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="463dp"
+        android:gravity="center"
+        android:text="@string/my_clock"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom"
+        android:paddingLeft="15dp"
+        android:text="This activity demonstrates the use of Frame Layout with multipation on top of each other"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+         />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="130dp"
+        android:layout_height="85dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginRight="200dp"
+        android:background="@drawable/layout3_drawable"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+</FrameLayout>

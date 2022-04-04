@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ex1</string>
+    <string name="option3">Option3</string>
+    <string name="option2">Option2</string>
+    <string name="option1">Option1</string>
+    <string name="alternative_1">Alternative 1</string>
+    <string name="alternative_2">Alternative 2</string>
+    <string name="your_name">Your Name:</string>
+    <string name="press_me">Press me!</string>
+    <string name="this_activity_demonstrates_the_use_of_relative_layout_with_two_internal_linear_layouts">This activity demonstrates the use of Relative Layout with two internal Linear layouts</string>
+    <string name="name">Name</string>
+    <string name="alternative1">Alternative1</string>
+    <string name="alternative2">Alternative2</string>
+    <string name="this_activity_demonstrates_the_use_of_grid_layout_with_embedded_image_views">This activity demonstrates the use of Grid Layout with embedded image views</string>
+    <string name="todo">TODO</string>
+    <string name="my_clock">My Clock</string>
+</resources>
