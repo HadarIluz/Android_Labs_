@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/drawable-port/buttons.xml" value="0.107" />
-        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-land/basic_calculator.xml" value="0.15961199294532627" />
-        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-port/basic_calculator.xml" value="0.1526268115942029" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-land/basic_calculator.xml" value="0.2" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-port/basic_calculator.xml" value="0.25" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-port/log.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout-port/seek_bar_layout.xml" value="0.36" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex4_advanced_calculator/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/ex1_Hadar/ex2/app/src/main/res/drawable-port/buttons.xml" value="0.149" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/ex1_Hadar/ex2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1715" />
