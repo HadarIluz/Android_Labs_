@@ -1,0 +1,7 @@
+#Wed Apr 20 17:45:41 IDT 2022
+base.1=C\:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+path.1=classes.dex
+base.0=C\:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

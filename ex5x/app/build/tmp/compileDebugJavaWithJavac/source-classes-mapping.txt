@@ -1,0 +1,10 @@
+com/example/ex5x/BuildConfig.java
+ com.example.ex5x.BuildConfig
+com/example/ex5x/FragB.java
+ com.example.ex5x.FragB
+ com.example.ex5x.FragB$FragBListener
+com/example/ex5x/FragA.java
+ com.example.ex5x.FragA
+ com.example.ex5x.FragA$FragAListener
+com/example/ex5x/MainActivity.java
+ com.example.ex5x.MainActivity

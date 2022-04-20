@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\layout_frag_b.xml.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\layout\\frag_b.xml"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_main.xml.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\layout-land\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\layout-port_activity_main.xml.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\layout-port\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\layout_frag_a.xml.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\layout\\frag_a.xml"
+    },
+    {
+        "merged": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\iluzh\\AndroidStudioProjects\\Android_Labs\\ex5x\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]
