@@ -186,18 +186,22 @@
                 android:id="@+id/MainLayout"
                 android:layout_width="match_parent"
                 android:layout_height="87dp"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="horizontal">
+
+                <!--
+
+                <include
+                    android:id="@+id/news_title"
+                    layout="@layout/seek_bar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                    -->
+            </LinearLayout>
         </LinearLayout>
 
         <!--add xml by the first option with include tag-->
 
-        <!--
-        <include
-            android:id="@+id/news_title"
-            layout="@layout/seek_bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        -->
 
     </LinearLayout>
 

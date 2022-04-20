@@ -58,24 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Dynamic layout for seek bar:
+
         LinearLayout parentLayout = (LinearLayout) findViewById(R.id.MainLayout);
         View child = getLayoutInflater().inflate(R.layout.seek_bar_layout, parentLayout, false);
-        /*RelativeLayout.LayoutParams rlp =new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        rlp.addRule(RelativeLayout.BELOW, R.id.button_clear);*/
-        //rlp.setMargins(0,dp2px(100),0,0);
         parentLayout.addView(child);
-        /*
-        ViewGroup parentLayout = (ViewGroup) findViewById(R.id.MainLayout); //this ia the mainLayout
-        View child = getLayoutInflater().inflate(R.layout.seek_bar_layout, parentLayout, false);
-        RelativeLayout.LayoutParams rlp =new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        rlp.addRule(RelativeLayout.BELOW, R.id.btnClear); //set the seek bar below the 'CLEAR' button.
-        rlp.setMargins(0,dp2px(100),0,0);
-        parentLayout.addView(child,rlp); //add the child with the ruls into the calculator.
-*/
+
+
         sb = (SeekBar) findViewById(R.id.seekBar);
         sb.setOnSeekBarChangeListener(new HandleSeekBar());
 
@@ -286,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
             int zeroCnt = sb.getProgress();
             float num = 0;
             String floatStr = String.format("%." + zeroCnt + "f", num);
-            tvExample.setText("zero accuracy: " + floatStr);
+            tvExample.setText("Example: " + floatStr);
             if(!tv1.getText().toString().isEmpty()){
                 tv1.setText(String.format("%." + zeroCnt + "f", initial_result));
             }

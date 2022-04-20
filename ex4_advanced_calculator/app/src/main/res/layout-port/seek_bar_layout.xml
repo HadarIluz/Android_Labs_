@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="bottom|center"
-            android:text="zero accuracy: "
+            android:text="Example:"
             android:textColor="@color/black" />
     </LinearLayout>
 
