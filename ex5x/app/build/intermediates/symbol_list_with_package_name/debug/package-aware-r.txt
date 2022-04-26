@@ -674,6 +674,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable border_red
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -682,7 +683,12 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable btn_shape
+drawable corner_red
+drawable frame_points
 drawable ic_launcher
+drawable ic_launcher_background
+drawable ic_launcher_foreground
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -695,6 +701,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable rounded_corner
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -737,6 +744,7 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id actionLayout
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -765,7 +773,10 @@ id barrier
 id beginning
 id blocking
 id bottom
-id button1
+id btDiv
+id btMin
+id btMul
+id btPlus
 id buttonPanel
 id cancel_action
 id center
@@ -791,6 +802,8 @@ id disableHome
 id edit_query
 id end
 id end_padder
+id etNo1
+id etNo2
 id expand_activities_button
 id expanded_menu
 id fill
@@ -799,6 +812,7 @@ id fill_vertical
 id forever
 id fragA
 id fragContainer
+id frag_b
 id fragment_container_view_tag
 id gone
 id group_divider
@@ -817,6 +831,7 @@ id line1
 id line3
 id listMode
 id list_item
+id mainLayout
 id media_actions
 id message
 id middle
@@ -829,6 +844,8 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id op2Layout
+id operand1Layout
 id packed
 id parent
 id parentPanel
@@ -839,6 +856,7 @@ id radio
 id right
 id right_icon
 id right_side
+id sbZero
 id screen
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -883,13 +901,19 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
-id textView1
+id textView3
+id textView4
+id textView5
 id time
 id title
 id titleDividerNoCustom
 id title_template
 id top
 id topPanel
+id tvExample
+id tvOp1
+id tvOp2
+id tvResulat
 id unchecked
 id uniform
 id up

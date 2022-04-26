@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/border_red.xml" value="0.155" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/btn_shape.xml" value="0.155" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/corner_red.xml" value="0.155" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/frame_points.xml" value="0.155" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/ic_launcher_background.xml" value="0.155" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/ic_launcher_foreground.xml" value="0.1365" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/drawable-xhdpi/rounded_corner.xml" value="0.1365" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout-port/activity_main.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout-port/frag1.xml" value="0.268" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/activity_main.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/frag1.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/fragA.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/fragB.xml" value="0.1" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/frag_a.xml" value="0.23369565217391305" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/Android_Labs/ex5x/app/src/main/res/layout/frag_b.xml" value="0.23369565217391305" />
       </map>
