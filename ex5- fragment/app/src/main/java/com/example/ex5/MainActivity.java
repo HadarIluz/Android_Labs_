@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,17 +34,18 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
 
 
     public void OnClickEvent(View view, String ed1, String ed2){
-        operand1 = (EditText)findViewById(R.id.etNo1);
-        operand2 = (EditText)findViewById(R.id.etNo2);
-        Button btn = findViewById(view.getId());
-        if(checkOperandExist(operand1, operand2)) {
-            op1 = Float.parseFloat(operand1.getText().toString());
-            op2 = Float.parseFloat(operand2.getText().toString());
-            if (btn.getText().toString().equals("/")) {
-                if (!div_check(op2)) {
+        op1 = Float.parseFloat(ed1);
+        op2 = Float.parseFloat(ed2);
+        Log.i(" on click Fram Main: %s", String.valueOf(op1));
+        Log.i("%s !!!!!!!!!!!!!!!!", String.valueOf(op2));
+        Button btn = findViewById(((Button)view).getId());
+
+        if (btn.getText().toString().equals("/")) {
+               if (!div_check(op2)) {
                     return;
-                }
-            }
+               }
+        }
+        int btId = ((Button)view).getId();
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
@@ -56,37 +58,39 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
             else{
                 fragB = (FragB)getSupportFragmentManager().findFragmentById(R.id.frag2);
             }
-            String res= calRes();
+            float res= calRes(btId);
+            Log.i(" res in main: %s @@@@@@@@@@@@@@@", String.valueOf(res));
             fragB.onNewClickSetResult(res);
             //fragB.setOperandResult(op1, op2, btn.getText().toString(), zeroCnt);
         }
-    }
 
 
-    private String calRes() {
+
+    private float calRes(int btn) {
         String str_res = "";
 
-        switch (strAction){
-            case "+":
+        switch (btn){
+            case R.id.btPlus:
                 initial_result = op1 + op2;
                 str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
-            case "-":
+            case R.id.btMin:
                 initial_result = op1 - op2;
                 str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
-            case "*":
+            case R.id.btMul:
                 initial_result = op1 * op2;
                 str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
-            case "/":
+            case R.id.btDiv:
                 initial_result = op1 / op2;
                 str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
             default:
                 break;
         }
-        return str_res;
+        Log.i(" calc res: %f", String.valueOf(initial_result));
+        return initial_result;
     }
 
     public boolean div_check(float ope2){

@@ -2,6 +2,7 @@ package com.example.ex5;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,6 +53,8 @@ public class FragA extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Log.i(" on click Fram A: %f", op1.getText().toString());
+        Log.i(" %f ###########", op2.getText().toString());
         listener.OnClickEvent(v,op1.getText().toString(),op2.getText().toString());;
     }
 

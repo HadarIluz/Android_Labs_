@@ -2,6 +2,7 @@ package com.example.ex5;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,7 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     FragBListener listener;
     TextView tvRes, tvExample;
     SeekBar sb;
-    static float op1, op2, initial_result;
-    static String action = "";
+    float numRes;
     static int zeroCnt = 0;
 
     @Override
@@ -73,6 +73,7 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
             float num = 123;
             String floatStr = String.format("%." + zeroCnt + "f", num);
             tvExample.setText("Example: " + floatStr);
+            tvRes.setText(String.format( "%." + zeroCnt + "f", numRes));
         }
     }
 
@@ -87,8 +88,11 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     }
 
     //the activity informs fragB about new click in fragA
-    public void onNewClickSetResult(String res) {
-        this.tvRes.setText( res );
+    public void onNewClickSetResult(float res) {
+        Log.i("this is res: %f $$$$$$$$$$$", String.valueOf(res));
+        numRes=res;
+        tvRes.setText(String.format( "%." + "2" + "f", numRes));
+        sb.setProgress(2);
     }
 
     public interface FragBListener {
