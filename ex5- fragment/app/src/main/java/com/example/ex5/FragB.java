@@ -5,18 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public class Frag2 extends Fragment implements SeekBar.OnSeekBarChangeListener{
-    Frag2Listener listener;
+public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
+    FragBListener listener;
     TextView tvRes, tvExample;
     SeekBar sb;
     static float op1, op2, initial_result;
@@ -33,7 +31,7 @@ public class Frag2 extends Fragment implements SeekBar.OnSeekBarChangeListener{
     @Override
     public void onAttach(@NonNull Context context) {
         try{
-            this.listener = (Frag2Listener)context;
+            this.listener = (FragBListener)context;
         }catch(ClassCastException e){
             throw new ClassCastException("the class " +
                     getActivity().getClass().getName() +
@@ -93,7 +91,7 @@ public class Frag2 extends Fragment implements SeekBar.OnSeekBarChangeListener{
         this.tvRes.setText( res );
     }
 
-    public interface Frag2Listener{
+    public interface FragBListener {
 //        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser);
     }
 }

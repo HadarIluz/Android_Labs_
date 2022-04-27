@@ -8,14 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements Frag1.Frag1Listener, Frag2.Frag2Listener{
+public class MainActivity extends AppCompatActivity implements FragA.FragAListener, FragB.FragBListener {
     EditText operand1;
     EditText operand2;
-    Frag2 frag2;
+    FragB fragB;
 
     static float op1, op2, initial_result;
     static String strAction = "";
@@ -33,11 +31,11 @@ public class MainActivity extends AppCompatActivity implements Frag1.Frag1Listen
         operand2 = (EditText)findViewById(R.id.etNo2);
     }
 
-    @Override
-    public void OnClickEvent(View v) {
+
+    public void OnClickEvent(View view, String ed1, String ed2){
         operand1 = (EditText)findViewById(R.id.etNo1);
         operand2 = (EditText)findViewById(R.id.etNo2);
-        Button btn = findViewById(v.getId());
+        Button btn = findViewById(view.getId());
         if(checkOperandExist(operand1, operand2)) {
             op1 = Float.parseFloat(operand1.getText().toString());
             op2 = Float.parseFloat(operand2.getText().toString());
@@ -49,18 +47,18 @@ public class MainActivity extends AppCompatActivity implements Frag1.Frag1Listen
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragContainer, Frag2.class, null, "FRAG2")
+                        .replace(R.id.fragContainer, FragB.class, null, "FRAG2")
                         .addToBackStack("BBB")
                         .commit();
                 getSupportFragmentManager().executePendingTransactions();
-                frag2 = (Frag2) getSupportFragmentManager().findFragmentByTag("FRAG2");
+                fragB = (FragB) getSupportFragmentManager().findFragmentByTag("FRAG2");
             }
             else{
-                frag2 = (Frag2)getSupportFragmentManager().findFragmentById(R.id.frag2);
+                fragB = (FragB)getSupportFragmentManager().findFragmentById(R.id.frag2);
             }
             String res= calRes();
-            frag2.onNewClickSetResult(res);
-            //frag2.setOperandResult(op1, op2, btn.getText().toString(), zeroCnt);
+            fragB.onNewClickSetResult(res);
+            //fragB.setOperandResult(op1, op2, btn.getText().toString(), zeroCnt);
         }
     }
 
