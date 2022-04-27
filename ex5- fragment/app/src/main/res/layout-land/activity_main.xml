@@ -19,6 +19,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag2"
+        class="com.example.ex5.FragB"
         android:layout_width="348dp"
         android:layout_height="407dp"
         android:layout_alignParentEnd="true"
