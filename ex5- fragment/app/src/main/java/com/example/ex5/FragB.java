@@ -21,13 +21,7 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     float numRes;
     static int zeroCnt = 0;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        setRetainInstance(false);
-        super.onCreate(savedInstanceState);
-
-    }
-
+    //bonding the main activity with this fragment (B), Gets context as mainActivity
     @Override
     public void onAttach(@NonNull Context context) {
         try{
@@ -40,12 +34,19 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
 
         super.onAttach(context);
     }
-
+    //Take all the info to the buffer memory
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.frag_2, container,false);
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setRetainInstance(false);
+        super.onCreate(savedInstanceState);
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -63,10 +64,9 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
 
 
 
-
+    //implements methods of seekBar onClickListener
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        //listener.onProgressChanged(seekBar, progress, fromUser);
 
         if(tvExample != null && tvRes != null) {
             zeroCnt = seekBar.getProgress();
@@ -87,6 +87,7 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
 
     }
 
+    /*This function gets the result which has been calculate in the mainActivity.*/
     //the activity informs fragB about new click in fragA
     public void onNewClickSetResult(float res) {
         Log.i("this is res: %f $$$$$$$$$$$", String.valueOf(res));
@@ -96,6 +97,6 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     }
 
     public interface FragBListener {
-//        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser);
+        //put here methods you want to utilize to communicate with the hosting activity
     }
 }

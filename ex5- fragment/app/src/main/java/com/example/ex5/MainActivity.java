@@ -12,27 +12,43 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FragA.FragAListener, FragB.FragBListener {
-    EditText operand1;
-    EditText operand2;
+    FragA fragA;
     FragB fragB;
 
     static float op1, op2, initial_result;
-    static String strAction = "";
     static int zeroCnt = 0;
 
     int duration = Toast.LENGTH_SHORT;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        operand1 = (EditText)findViewById(R.id.etNo1);
-        operand2 = (EditText)findViewById(R.id.etNo2);
+            fragA = (FragA) getSupportFragmentManager().findFragmentByTag("FRAG1");
+            fragB = (FragB) getSupportFragmentManager().findFragmentByTag("FRAG2");
+
+            if ((getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)){
+                if (fragB != null) {
+                    //begin of the transaction, remove fragment B in order to show only fragA.
+                    getSupportFragmentManager().beginTransaction()
+                            .show(fragB)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                else {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragContainer, FragB.class,null, "FRAGB")
+                            .commit();
+                }
+                getSupportFragmentManager().executePendingTransactions(); //execute now.
+            }
     }
 
 
+    /*This function gets data inputs from fragment A and to the calculation, then send the res to FragB by onNewClickSetResult() function.
+    view in an object that hold the button which pressed
+    */
     public void OnClickEvent(View view, String ed1, String ed2){
         op1 = Float.parseFloat(ed1);
         op2 = Float.parseFloat(ed2);
@@ -47,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
         }
         int btId = ((Button)view).getId();
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                //---change the current fragment to fragContainer==fragA---
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
                         .replace(R.id.fragContainer, FragB.class, null, "FRAG2")
@@ -60,8 +77,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
             }
             float res= calRes(btId);
             Log.i(" res in main: %s @@@@@@@@@@@@@@@", String.valueOf(res));
-            fragB.onNewClickSetResult(res);
-            //fragB.setOperandResult(op1, op2, btn.getText().toString(), zeroCnt);
+            fragB.onNewClickSetResult(res); // sent the result to frag B in order to display it.
         }
 
 
@@ -72,23 +88,20 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
         switch (btn){
             case R.id.btPlus:
                 initial_result = op1 + op2;
-                str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
             case R.id.btMin:
                 initial_result = op1 - op2;
-                str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
             case R.id.btMul:
                 initial_result = op1 * op2;
-                str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
             case R.id.btDiv:
                 initial_result = op1 / op2;
-                str_res = String.format("%." + zeroCnt + "f", initial_result);
                 break;
             default:
                 break;
         }
+        str_res = String.format("%." + zeroCnt + "f", initial_result);
         Log.i(" calc res: %f", String.valueOf(initial_result));
         return initial_result;
     }
@@ -96,18 +109,6 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     public boolean div_check(float ope2){
         if(ope2 == 0) {
             showToast("Divide by zero!!", getApplicationContext());
-            return false;
-        }
-        return true;
-    }
-
-    public boolean checkOperandExist(EditText operand1, EditText operand2){
-        if(operand1.getText().toString().isEmpty()){
-            showToast("fill operand1", getApplicationContext());
-            return false;
-        }
-        else if(operand2.getText().toString().isEmpty()){
-            showToast("fill operand2", getApplicationContext());
             return false;
         }
         return true;
