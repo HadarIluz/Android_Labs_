@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Exercise 5: Simpel calculator"
+        android:text="Exercise 6: Simpel calculator"
         android:textColor="#070707"
         app:layout_constraintBottom_toTopOf="@+id/mainLayout"
         app:layout_constraintEnd_toEndOf="parent"

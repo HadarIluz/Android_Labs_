@@ -1,4 +1,4 @@
-package com.example.ex5;
+package com.example.ex6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FragA.FragAListener, FragB.FragBListener {

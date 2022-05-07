@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragContainer"
-        class="com.example.ex5.FragA"
+        class="com.example.ex6.FragA"
         android:layout_width="392dp"
         android:layout_height="726dp"
         app:layout_constraintBottom_toBottomOf="parent"

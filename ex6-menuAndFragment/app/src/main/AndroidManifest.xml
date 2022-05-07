@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ex5">
+    package="com.example.ex6">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ex5">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.ex6.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
