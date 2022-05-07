@@ -2,6 +2,7 @@ package com.example.ex6;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,22 +11,24 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /*this dialog attach to frag B and we will display the seekbar only in frag B*/
 public class MySettingDialog extends DialogFragment {
 
-    static int zeroCnt = 0;
+    public static String zeroCnt;
     private ISettingDialog mListener;
     private SeekBar sb;
-    //public static String PROG = "progress";
+    private TextView tvExample;
+    public static String PROG = "progress";
 
     public static MySettingDialog newInstance(String title, int num) {
         MySettingDialog frag = new MySettingDialog();
         Bundle args = new Bundle();
         args.putString("title", title);
-        args.putInt("numOfZero", num);
+        args.putString("numOfZero", String.valueOf(num));
         frag.setArguments(args);
         return frag;
     }
@@ -36,16 +39,20 @@ public class MySettingDialog extends DialogFragment {
 
 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        zeroCnt = getArguments().getInt("numOfZero");
+        String title = getArguments().getString("title");
+        zeroCnt = getArguments().getString("numOfZero");
+        Log.i("zeroCnt is (MySettingDialog): %", zeroCnt);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle(title);
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.seekbar, null); //-->inflate the new seekBar layout.
         alertDialogBuilder.setView(v);
 
         sb = (SeekBar) v.findViewById(R.id.sbZero);
-        sb.setProgress(zeroCnt);    //set progress to the seekBar by the zeroCnt
-        TextView tvExample = (TextView)v.findViewById(R.id.tvExample);
+        sb.setProgress(Integer.parseInt(zeroCnt));    //set progress to the seekBar by the zeroCnt
+        tvExample = (TextView)v.findViewById(R.id.tvExample);
 
         float num = 123;
         String floatStr = String.format("%." + zeroCnt + "f", num);
@@ -57,7 +64,8 @@ public class MySettingDialog extends DialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if (tvExample != null) {
-                    zeroCnt = seekBar.getProgress();
+                    int numberZERO= seekBar.getProgress();
+                    zeroCnt =String.valueOf(numberZERO);
                     float num = 123;
                     String floatStr = String.format("%." + zeroCnt + "f", num);
                     tvExample.setText("Example: " + floatStr);
@@ -104,9 +112,33 @@ public class MySettingDialog extends DialogFragment {
     // Call this method to send the data back to the parent fragment
     public void sendBackResult() {
         SettingsDialogListener listener = (SettingsDialogListener) getTargetFragment();
-        listener.onFinishEditDialog(zeroCnt);
+        String num = zeroCnt;
+        listener.onFinishEditDialog(Integer.parseInt(num));
         dismiss();
     }
 
+
+
+
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        //this connect our mainactivity with the B fragment when the context var is the mainactivity
+        try{
+            this.mListener = (ISettingDialog)context;
+        }catch(ClassCastException e){
+            throw new ClassCastException("the class " +
+                    getActivity().getClass().getName() +
+                    " must implements the interface 'FragBListener'");
+        }
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
 }

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                 //TODO: ask daniel if this need to be in frag B??
                 FragmentManager fmSB = getSupportFragmentManager();
                 MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
-                //mySettingDialog.setTargetFragment(fragB, 1);//TODO: ASK?
+                //mySettingDialog.setTargetFragment(this, 1);//TODO: ASK?
                 mySettingDialog.show(fmSB, "fragment_alert");
                 break;
         }
