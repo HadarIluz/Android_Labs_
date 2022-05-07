@@ -1,11 +1,15 @@
 package com.example.ex6;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,6 +46,27 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                 }
                 getSupportFragmentManager().executePendingTransactions(); //execute now.
             }
+    }
+
+    /*------------------------------------*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.exit, menu);
+        //return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    //--> in this function we gets the items which has been pressed and handle the click event.
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuExit:
+                FragmentManager fm = getSupportFragmentManager();
+                MyExitDialog alertDialog = MyExitDialog.newInstance("Closing the application");
+                alertDialog.show(fm, "fragment_alert");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

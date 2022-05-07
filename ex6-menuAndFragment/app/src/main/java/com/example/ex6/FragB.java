@@ -35,9 +35,12 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         super.onAttach(context);
     }
     //Take all the info to the buffer memory
+    //-->Do inflate to the layout of the fragment.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*-->Informs the operating system that there is a menu.*/
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.frag_2, container,false);
     }
 
