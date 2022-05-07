@@ -16,13 +16,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /*this dialog attach to frag B and we will display the seekbar only in frag B*/
-public class MySettingDialog extends DialogFragment {
+public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBarChangeListener{
 
     public static String zeroCnt;
     private ISettingDialog mListener;
     private SeekBar sb;
     private TextView tvExample;
-    public static String PROG = "progress";
+
+    public MySettingDialog() {}
 
     public static MySettingDialog newInstance(String title, int num) {
         MySettingDialog frag = new MySettingDialog();
@@ -43,62 +44,64 @@ public class MySettingDialog extends DialogFragment {
         zeroCnt = getArguments().getString("numOfZero");
         Log.i("zeroCnt is (MySettingDialog): %", zeroCnt);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity(),R.style.SettingsDialog);
         alertDialogBuilder.setTitle(title);
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.seekbar, null); //-->inflate the new seekBar layout.
-        alertDialogBuilder.setView(v);
+        View seekBarView = getActivity().getLayoutInflater().inflate(R.layout.seekbar, null);
 
-        sb = (SeekBar) v.findViewById(R.id.sbZero);
+        //alertDialogBuilder.setView(seekBarView);
+
+        sb = (SeekBar) seekBarView.findViewById(R.id.sbZero);
+        tvExample = (TextView)seekBarView.findViewById(R.id.tvExample);
+        sb.setOnSeekBarChangeListener(this);
+
         sb.setProgress(Integer.parseInt(zeroCnt));    //set progress to the seekBar by the zeroCnt
-        tvExample = (TextView)v.findViewById(R.id.tvExample);
-
         float num = 123;
         String floatStr = String.format("%." + zeroCnt + "f", num);
         tvExample.setText("Example: " + floatStr);
 
+//        /*############## Seek Bar Methods ##############*/
+//        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//                if (tvExample != null) {
+//                    int numberZERO= seekBar.getProgress();
+//                    zeroCnt =String.valueOf(numberZERO);
+//                    float num = 123;
+//                    String floatStr = String.format("%." + zeroCnt + "f", num);
+//                    tvExample.setText("Example: " + floatStr);
+//                }
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//            }
+//
+//        });
+//        /*############## End of Seek Bar Methods ##############*/
 
-    /*############## Seek Bar Methods ##############*/
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (tvExample != null) {
-                    int numberZERO= seekBar.getProgress();
-                    zeroCnt =String.valueOf(numberZERO);
-                    float num = 123;
-                    String floatStr = String.format("%." + zeroCnt + "f", num);
-                    tvExample.setText("Example: " + floatStr);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-
-        });
-    /*############## End of Seek Bar Methods ##############*/
-
-        alertDialogBuilder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                sendBackResult();
-                dialog.dismiss();
-            }
-        });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-
-        });
-
-
+// Inflate and set the layout for the dialog
+        alertDialogBuilder.setTitle(R.string.settings_precision)
+                .setView(seekBarView)
+                .setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mListener.onSeekBarChanged(sb.getProgress());
+                                dismiss();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dismiss();
+                            }
+                        }
+                );
         return alertDialogBuilder.create();
     }
 
@@ -140,5 +143,37 @@ public class MySettingDialog extends DialogFragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
+
+
+
+
+
+
+
+
+    /*############## Seek Bar Methods ##############*/
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            if (tvExample != null) {
+                int numberZERO= seekBar.getProgress();
+                zeroCnt =String.valueOf(numberZERO);
+                float num = 123;
+                String floatStr = String.format("%." + zeroCnt + "f", num);
+                tvExample.setText("Example: " + floatStr);
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        }
+
+    /*############## End of Seek Bar Methods ##############*/
 
 }

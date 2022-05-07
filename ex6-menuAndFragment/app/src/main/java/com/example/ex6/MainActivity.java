@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                 }
                 else {
                     getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragContainer, FragB.class,null, "FRAGB")
+                            .add(R.id.fragContainer, FragB.class,null, "FRAG2")
                             .commit();
                 }
                 getSupportFragmentManager().executePendingTransactions(); //execute now.
@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                 break;
             case R.id.menuSetting:
                 //TODO: ask daniel if this need to be in frag B??
-                FragmentManager fmSB = getSupportFragmentManager();
+                //FragmentManager fmSB = getSupportFragmentManager();
                 MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
-                //mySettingDialog.setTargetFragment(this, 1);//TODO: ASK?
-                mySettingDialog.show(fmSB, "fragment_alert");
+                //mySettingDialog.setTargetFragment(fragB, 1);//TODO: ASK?
+                //mySettingDialog.show(fmSB, "fragment_alert");
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true; //super.onOptionsItemSelected(item);
     }
 
 
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
 
     public void onSeekBarChanged(int progress) {
         FragB fragB;
-        fragB = (FragB) getSupportFragmentManager().findFragmentByTag("FRAGB");
+        fragB = (FragB) getSupportFragmentManager().findFragmentByTag("FRAG2");
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
         {
             getSupportFragmentManager().beginTransaction()

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -33,6 +35,13 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
 
         super.onAttach(context);
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.setting, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
     //Take all the info to the buffer memory
     //-->Do inflate to the layout of the fragment.
     @Override
@@ -43,11 +52,11 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         return inflater.inflate(R.layout.frag_2, container,false);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        setRetainInstance(false);
-        super.onCreate(savedInstanceState);
-    }
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        setRetainInstance(false);
+//        super.onCreate(savedInstanceState);
+//    }
 
 
     @Override

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Ex5</string>
+    <string name="app_name">Ex6</string>
+    <string name="settings_precision">Set the numbers precision</string>
 </resources>
