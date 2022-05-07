@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ex6.MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frag1"
+        class="com.example.ex6.Frag1"
+        android:layout_width="368dp"
+        android:layout_height="408dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/frag_1" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frag2"
+        class="com.example.ex6.Frag2"
+        android:layout_width="348dp"
+        android:layout_height="407dp"
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/detailsElementBackground"
+        android:tag="FRAG2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
