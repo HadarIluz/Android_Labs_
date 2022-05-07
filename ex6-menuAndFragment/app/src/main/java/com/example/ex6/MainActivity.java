@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
 
     int duration = Toast.LENGTH_SHORT;
 
+    static String action = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -48,19 +50,21 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     /*This function gets data inputs from fragment A and to the calculation, then send the res to FragB by onNewClickSetResult() function.
     view in an object that hold the button which pressed
     */
-    public void OnClickEvent(View view, String ed1, String ed2){
+    public void OnClickEvent(String btAction, String ed1, String ed2){
         op1 = Float.parseFloat(ed1);
         op2 = Float.parseFloat(ed2);
         Log.i(" on click Fram Main: %s", String.valueOf(op1));
         Log.i("%s !!!!!!!!!!!!!!!!", String.valueOf(op2));
-        Button btn = findViewById(((Button)view).getId());
+        Log.i("my botton is: %S", btAction);
+        //Button btn = findViewById(((Button)view).getId());
 
-        if (btn.getText().toString().equals("/")) {
+        if (btAction.equals("/")) {
                if (!div_check(op2)) {
                     return;
                }
         }
-        int btId = ((Button)view).getId();
+
+        //int btId = ((Button)view).getId();
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 //---change the current fragment to fragContainer==fragA---
                 getSupportFragmentManager().beginTransaction()
@@ -74,27 +78,27 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
             else{
                 fragB = (FragB)getSupportFragmentManager().findFragmentById(R.id.frag2);
             }
-            float res= calRes(btId);
+            float res= calRes(btAction);
             Log.i(" res in main: %s @@@@@@@@@@@@@@@", String.valueOf(res));
             fragB.onNewClickSetResult(res); // sent the result to frag B in order to display it.
         }
 
 
 
-    private float calRes(int btn) {
+    private float calRes(String btn) {
         String str_res = "";
 
         switch (btn){
-            case R.id.btPlus:
+            case "+":
                 initial_result = op1 + op2;
                 break;
-            case R.id.btMin:
+            case "-":
                 initial_result = op1 - op2;
                 break;
-            case R.id.btMul:
+            case "*":
                 initial_result = op1 * op2;
                 break;
-            case R.id.btDiv:
+            case "/":
                 initial_result = op1 / op2;
                 break;
             default:
