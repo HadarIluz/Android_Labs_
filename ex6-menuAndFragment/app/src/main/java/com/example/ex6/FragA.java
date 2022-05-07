@@ -74,12 +74,12 @@ public class FragA extends Fragment implements OnClickListener {
         Button btn = v.findViewById(v.getId());
         String myPressBtn=btn.getText().toString();
         Log.i("button frag A is: %s", myPressBtn);
-        listener.OnClickEvent(myPressBtn,op1.getText().toString(),op2.getText().toString());;
+        listener.OnClickEvent(myPressBtn,op1.getText().toString(),op2.getText().toString());
     }
 
     //the interface of this fragment that include the methods
     public interface FragAListener{
-        public void OnClickEvent(String view, String ed1, String ed2);
+        public void OnClickEvent(String btAction, String ed1, String ed2);
     }
 
     /* This function disable the buttons */

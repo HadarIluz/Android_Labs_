@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
 
     int duration = Toast.LENGTH_SHORT;
 
-    static String action = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
