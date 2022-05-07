@@ -14,14 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements FragA.FragAListener, FragB.FragBListener {
+public class MainActivity extends AppCompatActivity implements FragA.FragAListener, FragB.FragBListener,MySettingDialog.ISettingDialog {
     FragA fragA;
     FragB fragB;
 
     static float op1, op2, initial_result;
-    static int zeroCnt = 0;
 
     int duration = Toast.LENGTH_SHORT;
+
+    static float res=0;
+    static int zeroCnt = 2;
+    public static String PROG = "progress";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     }
 
     /*------------------------------------*/
+    //create menu for all fragments to use.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exit, menu);
@@ -64,6 +68,13 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                 FragmentManager fm = getSupportFragmentManager();
                 MyExitDialog alertDialog = MyExitDialog.newInstance("Closing the application");
                 alertDialog.show(fm, "fragment_alert");
+                break;
+            case R.id.menuSetting:
+                //TODO: ask daniel if this need to be in frag B??
+                FragmentManager fmSB = getSupportFragmentManager();
+                MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
+                //mySettingDialog.setTargetFragment(fragB, 1);//TODO: ASK?
+                mySettingDialog.show(fmSB, "fragment_alert");
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -101,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
             else{
                 fragB = (FragB)getSupportFragmentManager().findFragmentById(R.id.frag2);
             }
-            float res= calRes(btAction);
+            res= calRes(btAction);
             Log.i(" res in main: %s @@@@@@@@@@@@@@@", String.valueOf(res));
+            fragB.setZeroFormatResult(String.valueOf(zeroCnt));
             fragB.onNewClickSetResult(res); // sent the result to frag B in order to display it.
         }
 
@@ -143,6 +155,28 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     private void showToast(CharSequence str, Context context){
         Toast toast = Toast.makeText(context, str, duration);
         toast.show();
+    }
+
+
+
+    public void onSeekBarChanged(int progress) {
+        FragB fragB;
+        fragB = (FragB) getSupportFragmentManager().findFragmentByTag("FRAGB");
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+        {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .show(fragB)
+                    .addToBackStack("BBB")
+                    .commit();
+            getSupportFragmentManager().executePendingTransactions();
+        }
+
+        //set the new format and the sum
+        zeroCnt = progress;
+        fragB.setZeroFormatResult(String.valueOf(progress));
+        fragB.onNewClickSetResult(res);
+
     }
 
 }
