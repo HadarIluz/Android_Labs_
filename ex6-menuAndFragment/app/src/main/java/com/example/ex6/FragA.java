@@ -41,10 +41,10 @@ public class FragA extends Fragment implements OnClickListener {
 
         return inflater.inflate(R.layout.frag_1, container,false);
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

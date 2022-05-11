@@ -72,9 +72,14 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
             case R.id.menuSetting:
                 //TODO: ask daniel if this need to be in frag B??
                 //FragmentManager fmSB = getSupportFragmentManager();
-                MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
+                //MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
                 //mySettingDialog.setTargetFragment(fragB, 1);//TODO: ASK?
                 //mySettingDialog.show(fmSB, "fragment_alert");
+                MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision");
+                Bundle bundle = new Bundle();
+                bundle.putInt(PROG, zeroCnt);
+                mySettingDialog.setArguments(bundle);
+                mySettingDialog.show(getSupportFragmentManager(), "settingsDialog");
                 break;
         }
         return true; //super.onOptionsItemSelected(item);

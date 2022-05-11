@@ -16,22 +16,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /*this dialog attach to frag B and we will display the seekbar only in frag B*/
-public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBarChangeListener{
-
+public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBarChangeListener {
+    public static String PROG = "progress";
     public static String zeroCnt;
     private ISettingDialog mListener;
     private SeekBar sb;
     private TextView tvExample;
 
-    public MySettingDialog() {}
+    public MySettingDialog() {
+    }
 
-    public static MySettingDialog newInstance(String title, int num) {
+    public static MySettingDialog newInstance(String title) {
         MySettingDialog frag = new MySettingDialog();
-        Bundle args = new Bundle();
-        args.putString("title", title);
-        args.putString("numOfZero", String.valueOf(num));
-        frag.setArguments(args);
         return frag;
+
+//        MySettingDialog frag = new MySettingDialog();
+//        Bundle args = new Bundle();
+//        args.putString("title", title);
+//        //args.putString("numOfZero", String.valueOf(num));
+//        frag.setArguments(args);
+//        return frag;
     }
 
     public interface ISettingDialog {
@@ -41,24 +45,34 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         String title = getArguments().getString("title");
-        zeroCnt = getArguments().getString("numOfZero");
-        Log.i("zeroCnt is (MySettingDialog): %", zeroCnt);
+        //zeroCnt = getArguments().getString("numOfZero");
+
+
+        Log.i("zeroCnt is (MySettingDialog): %d", String.valueOf(999)); //ONLY FOR MY DEBUG
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity(),R.style.SettingsDialog);
         alertDialogBuilder.setTitle(title);
 
-        View seekBarView = getActivity().getLayoutInflater().inflate(R.layout.seekbar, null);
+        View seekBarView = getActivity().getLayoutInflater().inflate(R.layout.seek_bar, null);
 
         //alertDialogBuilder.setView(seekBarView);
 
         sb = (SeekBar) seekBarView.findViewById(R.id.sbZero);
         tvExample = (TextView)seekBarView.findViewById(R.id.tvExample);
-        sb.setOnSeekBarChangeListener(this);
+        //sb.setOnSeekBarChangeListener(this);
 
-        sb.setProgress(Integer.parseInt(zeroCnt));    //set progress to the seekBar by the zeroCnt
-        float num = 123;
-        String floatStr = String.format("%." + zeroCnt + "f", num);
-        tvExample.setText("Example: " + floatStr);
+
+        Bundle zeroCntArg = getArguments();
+        if (zeroCntArg != null) {
+            int zeroCnt = zeroCntArg.getInt(PROG);
+            if (0 <= zeroCnt && zeroCnt <= 5){}
+                //sb.setProgress(zeroCnt);
+        }
+
+//        sb.setProgress(Integer.parseInt(zeroCnt));    //set progress to the seekBar by the zeroCnt
+//        float num = 123;
+//        String floatStr = String.format("%." + zeroCnt + "f", num);
+//        tvExample.setText("Example: " + floatStr);
 
 //        /*############## Seek Bar Methods ##############*/
 //        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
@@ -121,6 +135,64 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
     }
 
 
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int mode0to5, boolean fromUser) {
+
+        switch(mode0to5){
+            case 0:{
+                //String floatStr = String.format("%." + zeroCnt + "f", num);
+                //tvExample.setText("Example: " + floatStr);
+                tvExample.setText("example: 123");
+            }
+            break;
+            case 1:{
+                tvExample.setText("example: 123.0");
+            }
+            break;
+            case 2:{
+                tvExample.setText("example: 123.00");
+            }
+            break;
+            case 3:{
+                tvExample.setText("example: 123.000");
+            }
+            break;
+            case 4:{
+                tvExample.setText("example: 123.0000");
+            }
+            break;
+            case 5:{
+                tvExample.setText("example: 123.00000");
+            }
+            break;
+        }
+
+    }
+
+//    /*############## Seek Bar Methods ##############*/
+//    @Override
+//    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//        if (tvExample != null) {
+//            int numberZERO= seekBar.getProgress();
+//            zeroCnt =String.valueOf(numberZERO);
+//            float num = 123;
+//            String floatStr = String.format("%." + zeroCnt + "f", num);
+//            tvExample.setText("Example: " + floatStr);
+//        }
+//    }
+
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+    }
+
+    /*############## End of Seek Bar Methods ##############*/
+
+
 
 
 
@@ -154,26 +226,7 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
 
 
 
-    /*############## Seek Bar Methods ##############*/
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            if (tvExample != null) {
-                int numberZERO= seekBar.getProgress();
-                zeroCnt =String.valueOf(numberZERO);
-                float num = 123;
-                String floatStr = String.format("%." + zeroCnt + "f", num);
-                tvExample.setText("Example: " + floatStr);
-            }
-        }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-        }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-        }
-
-    /*############## End of Seek Bar Methods ##############*/
 
 }

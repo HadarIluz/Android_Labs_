@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
@@ -42,6 +44,7 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+
     //Take all the info to the buffer memory
     //-->Do inflate to the layout of the fragment.
     @Override
@@ -65,10 +68,10 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//    }
 
 
 
