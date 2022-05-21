@@ -18,8 +18,8 @@ import androidx.fragment.app.Fragment;
 
 public class FragA extends Fragment implements OnClickListener {
     FragAListener listener;  // hold the mainActivity referance
-    EditText op1, op2;
-    Button addButton,minusButton,divideButton,multipicationButton;
+    private EditText op1, op2;
+    private Button addButton,minusButton,divideButton,multipicationButton;
 
     //bonding the main activity with this fragment (A), Gets context as mainActivity
     @Override
@@ -41,10 +41,7 @@ public class FragA extends Fragment implements OnClickListener {
 
         return inflater.inflate(R.layout.frag_1, container,false);
     }
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -121,4 +118,5 @@ public class FragA extends Fragment implements OnClickListener {
             }
         }
     }
+
 }

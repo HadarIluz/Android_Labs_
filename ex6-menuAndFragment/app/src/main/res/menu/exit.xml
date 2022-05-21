@@ -5,6 +5,6 @@
     <group >
         <item
             android:id="@+id/menuExit"
-            android:title="Exit"/>
+            android:title="Exit" />
     </group>
 </menu>

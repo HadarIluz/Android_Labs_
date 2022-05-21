@@ -58,12 +58,6 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         return inflater.inflate(R.layout.frag_2, container,false);
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        setRetainInstance(false);
-//        super.onCreate(savedInstanceState);
-//    }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -75,11 +69,6 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
         }
         super.onViewCreated(view, savedInstanceState);
     }
-
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//    }
 
 
 
