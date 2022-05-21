@@ -65,16 +65,11 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuExit:
-                FragmentManager fm = getSupportFragmentManager();
                 MyExitDialog alertDialog = MyExitDialog.newInstance("Closing the application");
+                FragmentManager fm = getSupportFragmentManager();
                 alertDialog.show(fm, "fragment_alert");
                 break;
             case R.id.menuSetting:
-                //TODO: ask daniel if this need to be in frag B??
-                //FragmentManager fmSB = getSupportFragmentManager();
-                //MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision", zeroCnt);
-                //mySettingDialog.setTargetFragment(fragB, 1);//TODO: ASK?
-                //mySettingDialog.show(fmSB, "fragment_alert");
                 MySettingDialog mySettingDialog = MySettingDialog.newInstance("Set the numbers precision");
                 Bundle bundle = new Bundle();
                 bundle.putInt(PROG, zeroCnt);
@@ -97,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
         Log.i(" on click Fram Main: %s", String.valueOf(op1));
         Log.i("%s !!!!!!!!!!!!!!!!", String.valueOf(op2));
         Log.i("my botton is: %S", btAction);
-        //Button btn = findViewById(((Button)view).getId());
 
         if (btAction.equals("/")) {
                if (!div_check(op2)) {
