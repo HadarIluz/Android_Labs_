@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -26,16 +26,16 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         this.countriesList = CountryXMLParser.parseCountries(context);
     }
 
-    @NonNull
+    //@NonNull
     @Override
-    public CountriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CountriesViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View countryView = inflater.inflate(R.layout.country_row_frag, parent, false);
         return new CountriesViewHolder(countryView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder( CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bindData(countriesList.get(position));
 
         // This listener will change the color of selected row
@@ -70,7 +70,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         private final TextView  populationTextView;
         private LinearLayout row_linearLayout;
 
-        public CountriesViewHolder(@NonNull View itemView) {
+        public CountriesViewHolder( View itemView) {
             super(itemView);
             context             = itemView.getContext();
             countryItem         = itemView.findViewById(R.id.country_row_frag);
