@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
                }
         }
 
-        //int btId = ((Button)view).getId();
+
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 //---change the current fragment to fragContainer==fragA---
                 getSupportFragmentManager().beginTransaction()

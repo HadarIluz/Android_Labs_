@@ -18,13 +18,13 @@ import androidx.fragment.app.DialogFragment;
 /*this dialog attach to frag B and we will display the seekbar only in frag B*/
 public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBarChangeListener {
     public static String PROG = "progress";
-    public static String zeroCnt;
+    //public static String zeroCnt;
     private ISettingDialog mListener;
     private SeekBar sb;
     private TextView tvExample;
 
-    public MySettingDialog() {
-    }
+//    public MySettingDialog() {
+//    }
 
     public static MySettingDialog newInstance(String title) {
         MySettingDialog frag = new MySettingDialog();
@@ -43,7 +43,7 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
     }
 
 
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         String title = getArguments().getString("title");
         //zeroCnt = getArguments().getString("numOfZero");
 
@@ -59,14 +59,14 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
 
         sb = (SeekBar) seekBarView.findViewById(R.id.sbZero);
         tvExample = (TextView)seekBarView.findViewById(R.id.tvExample);
-        //sb.setOnSeekBarChangeListener(this);
+        sb.setOnSeekBarChangeListener(this);
 
 
         Bundle zeroCntArg = getArguments();
         if (zeroCntArg != null) {
             int zeroCnt = zeroCntArg.getInt(PROG);
             if (0 <= zeroCnt && zeroCnt <= 5){}
-                //sb.setProgress(zeroCnt);
+                sb.setProgress(zeroCnt);
         }
 
 //        sb.setProgress(Integer.parseInt(zeroCnt));    //set progress to the seekBar by the zeroCnt
@@ -122,19 +122,19 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
 
 
 
-    public interface SettingsDialogListener {
-        void onFinishEditDialog(int inputNum);
-    }
+//    public interface SettingsDialogListener {
+//        void onFinishEditDialog(int inputNum);
+//    }
+//
+//    // Call this method to send the data back to the parent fragment
+//    public void sendBackResult() {
+//        SettingsDialogListener listener = (SettingsDialogListener) getTargetFragment();
+//        String num = zeroCnt;
+//        listener.onFinishEditDialog(Integer.parseInt(num));
+//        dismiss();
+//    }
 
-    // Call this method to send the data back to the parent fragment
-    public void sendBackResult() {
-        SettingsDialogListener listener = (SettingsDialogListener) getTargetFragment();
-        String num = zeroCnt;
-        listener.onFinishEditDialog(Integer.parseInt(num));
-        dismiss();
-    }
-
-
+    //    /*############## Seek Bar Methods ##############*/
     @Override
     public void onProgressChanged(SeekBar seekBar, int mode0to5, boolean fromUser) {
 
@@ -169,7 +169,7 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
 
     }
 
-//    /*############## Seek Bar Methods ##############*/
+
 //    @Override
 //    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 //        if (tvExample != null) {

@@ -34,7 +34,7 @@
                     android:textSize="20sp" />
 
                 <SeekBar
-                    android:id="@+id/seekBar"
+                    android:id="@+id/sbZero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -53,9 +53,10 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtEcample"
+                android:id="@+id/tvExample"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Example: 123"
                 android:textColor="#000000" />
         </LinearLayout>
 

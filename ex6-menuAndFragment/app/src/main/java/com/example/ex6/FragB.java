@@ -17,11 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.Locale;
+
 
 public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     FragBListener listener;
+    private float lastResult;
     private TextView tvRes;
-    float numRes;
+    //float numRes;
     private String zeroCnt = "2";
 
     //bonding the main activity with this fragment (B), Gets context as mainActivity
@@ -65,6 +68,11 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         this.tvRes= (TextView) view.findViewById(R.id.tvResulat);
+        try {
+            tvRes.setText(String.format(Locale.getDefault(), "%." + zeroCnt + "f", lastResult));
+        } catch (NumberFormatException e) {
+            tvRes.setText("");
+        }
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -80,8 +88,8 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         zeroCnt = String.valueOf(progress);
         float num = 123;
-        String floatStr = String.format("%." + zeroCnt + "f", num);
-        tvRes.setText(String.format( "%." + zeroCnt + "f", numRes));
+        //String floatStr = String.format("%." + zeroCnt + "f", num);
+        tvRes.setText(String.format( "%." + zeroCnt + "f", lastResult));
     }
 
     @Override
@@ -97,11 +105,13 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     /*This function gets the result which has been calculate in the mainActivity.*/
     //the activity informs fragB about new click in fragA
     public void onNewClickSetResult(float res) {
+        lastResult = res;
         Log.i("this is res: %f $$$$$$$$$$$", String.valueOf(res));
-        numRes=res;
-        tvRes.setText(String.format( "%." + zeroCnt + "f", numRes));
+        //numRes=res;
+        tvRes.setText(String.format( "%." + zeroCnt + "f", lastResult));
     }
 
+    /*This function gets the format of the result which has been calculate in the mainActivity.*/
     public void setZeroFormatResult(String newZeroCnt) {
         zeroCnt= newZeroCnt;
     }
