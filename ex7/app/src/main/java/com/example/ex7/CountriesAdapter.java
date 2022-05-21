@@ -16,17 +16,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+//my
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountriesViewHolder> {
-
+    //in the < > is the name of the internal class.
     private final List<Country> countriesList;
     //private static int countryListSize=0;
     private int selectedRow = -1;
 
+    /*This constructor fills our list named:countriesList with all the
+     information we have in a database which is an XML file*/
     public CountriesAdapter(Context context) {
         this.countriesList = CountryXMLParser.parseCountries(context);
     }
 
-    //@NonNull
+    /* ##########_3 functions from Adapter abstract class_##########*/
+   /*3 function that we must to implement because we extends (Heirs) the RecyclerView.Adapter class.
+   * 1. CountriesViewHolder
+   * 2. onBindViewHolder
+   * 3. getItemCount
+   *   */
+
+    /*In this function we do inflate to the layout: "country_row_frag"
+    * and sent it to the constructor*/
     @Override
     public CountriesViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -34,6 +45,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         return new CountriesViewHolder(countryView);
     }
 
+    /*This function gets 1.the 'countryViewHolder' that we want to fill with all the data
+    * and 2. the location in the data structure that from there(fro the location in the array) we take the data.*/
     @Override
     public void onBindViewHolder( CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bindData(countriesList.get(position));
@@ -43,7 +56,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             @Override
             public void onClick(View view) {
                 selectedRow = position;
-                notifyDataSetChanged();
+                notifyDataSetChanged();//notify there is change and do refresh.
             }
         });
 
@@ -54,15 +67,17 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         }
     }
 
+    /*3.This function return how data from this specific type there is in the database */
     @Override
     public int getItemCount() {
         return countriesList.size();
     }
+    /* ##########_3 functions from Adapter abstract class_##########*/
 
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@_Private_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
     // Each row in RecyclerView will get reference of this CountriesViewHolder
     // *** Include the function that can remove the row
-    public class CountriesViewHolder extends RecyclerView.ViewHolder
-    {
+    public class CountriesViewHolder extends RecyclerView.ViewHolder {
         private final Context   context;
         private final View      countryItem;
         private final ImageView flagImageView;
@@ -101,6 +116,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             notifyItemRemoved(position);// ****** this notify to the recycle that there is change in data base
         }
     }
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@End_Of_Private_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
     private static int getDrawableId(Context context, String drawableName) {
         Resources resources = context.getResources();
