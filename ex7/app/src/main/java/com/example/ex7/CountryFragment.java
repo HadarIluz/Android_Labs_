@@ -18,13 +18,13 @@ public class CountryFragment extends Fragment  {
     CountriesFragmentListener listener; // hold the mainActivity reference
     private CountriesAdapter countriesAdapter;
 
-    /*1.we do infale to the layout of the fragment*/
+    /*1.we do inflate to the layout of the fragment*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.countries_list_frag, container, false);
     }
 
-    /*2. we sech by using "findViewById" the recycle_view that already done --> at this point!*/
+    /*2. we search by using "findViewById" the recycle_view that already done --> at this point!*/
     public void onViewCreated(View view, Bundle savedInstanceState)  {
         recyclerView = view.findViewById(R.id.recycle_view);
         super.onViewCreated(view, savedInstanceState);
@@ -40,7 +40,7 @@ public class CountryFragment extends Fragment  {
         /*-------Here we do the connection between to the adapter-------*/
         recyclerView.setAdapter(countriesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        countriesAdapter.sort();
     }
 
 

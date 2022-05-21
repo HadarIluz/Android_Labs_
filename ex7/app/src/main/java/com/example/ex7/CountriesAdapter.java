@@ -14,6 +14,8 @@ import android.widget.TextView;
 //import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 //my
@@ -31,7 +33,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
 
     /* ##########_3 functions from Adapter abstract class_##########*/
    /*3 function that we must to implement because we extends (Heirs) the RecyclerView.Adapter class.
-   * 1. CountriesViewHolder
+   * 1. onCreateViewHolder
    * 2. onBindViewHolder
    * 3. getItemCount
    *   */
@@ -46,7 +48,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     }
 
     /*This function gets 1.the 'countryViewHolder' that we want to fill with all the data
-    * and 2. the location in the data structure that from there(fro the location in the array) we take the data.*/
+    * and 2. the location in the data structure that from there(from the location in the array) we take the data.*/
     @Override
     public void onBindViewHolder( CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bindData(countriesList.get(position));
@@ -61,9 +63,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         });
 
         if(selectedRow == position){
-            holder.row_linearLayout.setBackgroundColor(Color.parseColor("#03dffc"));
+            holder.row_linearLayout.setBackgroundColor(Color.parseColor("#EC96EC"));
         }else{
-            holder.row_linearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            holder.row_linearLayout.setBackgroundColor(Color.parseColor("#E4E4E4"));
         }
     }
 
@@ -72,9 +74,13 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     public int getItemCount() {
         return countriesList.size();
     }
+
+    public void sort() {
+        //TODO: sort by country.
+    }
     /* ##########_3 functions from Adapter abstract class_##########*/
 
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@_Private_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@_Internal_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
     // Each row in RecyclerView will get reference of this CountriesViewHolder
     // *** Include the function that can remove the row
     public class CountriesViewHolder extends RecyclerView.ViewHolder {
