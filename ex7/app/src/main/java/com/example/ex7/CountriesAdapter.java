@@ -23,7 +23,6 @@ import java.util.List;
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountriesViewHolder> {
     //in the < > is the name of the internal class.
     private final List<Country> countriesList;
-    //private static int countryListSize=0;
     private int selectedRow = -1;
 
     /*This constructor fills our list named:countriesList with all the
@@ -53,7 +52,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     /*This function gets 1.the 'countryViewHolder' that we want to fill with all the data
     * and 2. the location in the data structure that from there(from the location in the array) we take the data.*/
     @Override
-    public void onBindViewHolder( CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bindData(countriesList.get(position));
 
         // This listener will change the color of selected row
