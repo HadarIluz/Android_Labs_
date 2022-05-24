@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 //my
@@ -29,6 +30,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
      information we have in a database which is an XML file*/
     public CountriesAdapter(Context context) {
         this.countriesList = CountryXMLParser.parseCountries(context);
+        Comparator<Country> sortByName = Comparator.comparing(Country:: getName);
+        Collections.sort(countriesList, sortByName);
     }
 
     /* ##########_3 functions from Adapter abstract class_##########*/
