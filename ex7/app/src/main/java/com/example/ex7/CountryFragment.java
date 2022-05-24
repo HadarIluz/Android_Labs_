@@ -40,7 +40,7 @@ public class CountryFragment extends Fragment  {
         /*-------Here we do the connection between to the adapter-------*/
         recyclerView.setAdapter(countriesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        countriesAdapter.sort();
+        countriesAdapter.sortByName();
     }
 
 

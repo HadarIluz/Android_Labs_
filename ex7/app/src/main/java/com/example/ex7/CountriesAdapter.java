@@ -29,8 +29,6 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
      information we have in a database which is an XML file*/
     public CountriesAdapter(Context context) {
         this.countriesList = CountryXMLParser.parseCountries(context);
-        Comparator<Country> sortByName = Comparator.comparing(Country:: getName);
-        Collections.sort(countriesList, sortByName);
     }
 
     /* ##########_3 functions from Adapter abstract class_##########*/
@@ -77,8 +75,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         return countriesList.size();
     }
 
-    public void sort() {
-        //TODO: sort by country.
+    public void sortByName() {
+        Comparator<Country> sortByName = Comparator.comparing(Country:: getName);
+        Collections.sort(countriesList, sortByName);
     }
     /* ##########_3 functions from Adapter abstract class_##########*/
 
