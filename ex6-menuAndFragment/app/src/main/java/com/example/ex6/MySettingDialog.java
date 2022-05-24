@@ -18,14 +18,13 @@ import androidx.fragment.app.DialogFragment;
 /*this dialog attach to frag B and we will display the seekbar only in frag B*/
 public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBarChangeListener {
     public static String PROG = "progress";
-    //public static String zeroCnt;
     private ISettingDialog mListener;
     private SeekBar sb;
     private TextView tvExample;
 
     @Override
     public void onAttach(@NonNull Context context) {
-        //this connect our mainactivity with the B fragment when the context var is the mainactivity
+        //this connect our mainActivity with the B fragment when the context var is the mainActivity
         try{
             this.mListener = (ISettingDialog)context;
         }catch(ClassCastException e){
@@ -69,7 +68,7 @@ public class MySettingDialog extends DialogFragment implements SeekBar.OnSeekBar
         // Inflate and set the layout for the dialog
         alertDialogBuilder.setTitle(R.string.settings_precision)
                 .setView(seekBarView)
-                .setPositiveButton("Ok",
+                .setPositiveButton("Apply",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

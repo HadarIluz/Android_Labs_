@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     FragB fragB;
 
     static float op1, op2, initial_result;
-    String keepEd1,keepEd2;
     int duration = Toast.LENGTH_SHORT;
 
     static float res=0;
@@ -85,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements FragA.FragAListen
     view in an object that hold the button which pressed
     */
     public void OnClickEvent(String btAction, String ed1, String ed2){
-        int num1 = Integer.valueOf(ed1);
-        int num2 = Integer.valueOf(ed2);
         op1 = Float.parseFloat(ed1);
         op2 = Float.parseFloat(ed2);
         Log.i(" on click Fram Main: %s", String.valueOf(op1));

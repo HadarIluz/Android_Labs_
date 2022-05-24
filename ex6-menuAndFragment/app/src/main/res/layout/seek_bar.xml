@@ -35,13 +35,13 @@
 
                 <SeekBar
                     android:id="@+id/sbZero"
-                    android:layout_width="match_parent"
+                    android:layout_width="306dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="25"
                     android:max="5"
-                    android:progressTint="#FFC107"
-                    android:thumbTint="#FFC107"
+                    android:progressTint="#B507FF"
+                    android:thumbTint="#D207FF"
                     android:tickMarkTint="#000000" />
 
                 <TextView

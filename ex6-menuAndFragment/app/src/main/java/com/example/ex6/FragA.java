@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 public class FragA extends Fragment implements OnClickListener {
     FragAListener listener;  // hold the mainActivity referance
     private EditText op1, op2;
-    private Button addButton,minusButton,divideButton,multipicationButton;
+    private Button addButton,minusButton,divideButton,mulButton;
 
     //bonding the main activity with this fragment (A), Gets context as mainActivity
     @Override
@@ -49,7 +49,7 @@ public class FragA extends Fragment implements OnClickListener {
         addButton = view.findViewById(R.id.btPlus);
         divideButton = view.findViewById(R.id.btDiv);
         minusButton = view.findViewById(R.id.btMin);
-        multipicationButton = view.findViewById(R.id.btMul);
+        mulButton = view.findViewById(R.id.btMul);
         op1 = view.findViewById(R.id.etNo1);
         op2 = view.findViewById(R.id.etNo2);
         op1.addTextChangedListener(textWatcher);
@@ -57,14 +57,14 @@ public class FragA extends Fragment implements OnClickListener {
 
         addButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
-        multipicationButton.setOnClickListener(this);
+        mulButton.setOnClickListener(this);
         divideButton.setOnClickListener(this);
         setAllButtonState(false);
         super.onViewCreated(view, savedInstanceState);
     }
 
 
-    // Handle onClick event, sent to mainActivity all the rellevant data for the calculation, using interface
+    // Handle onClick event, sent to mainActivity all the relevant data for the calculation, using interface
     @Override
     public void onClick(View v) {
         Log.i(" on click Fram A: %f", op1.getText().toString());
@@ -84,11 +84,11 @@ public class FragA extends Fragment implements OnClickListener {
     private void setAllButtonState(boolean state) {
         addButton.setEnabled(state);
         minusButton.setEnabled(state);
-        multipicationButton.setEnabled(state);
+        mulButton.setEnabled(state);
         divideButton.setEnabled(state);
     }
 
-    /* Mmember class option */
+    /* Member class option */
     private class myTextWatcher  implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,7 +106,7 @@ public class FragA extends Fragment implements OnClickListener {
             if (op1.getText().toString().length() != 0 && op2.getText().toString().length() != 0){
                 addButton.setEnabled(true);
                 minusButton.setEnabled(true);
-                multipicationButton.setEnabled(true);
+                mulButton.setEnabled(true);
                 float num2 = Float.parseFloat(op2.getText().toString());
                 if(num2 != 0){
                     divideButton.setEnabled(true);

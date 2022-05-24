@@ -24,7 +24,6 @@ public class FragB extends Fragment implements SeekBar.OnSeekBarChangeListener{
     FragBListener listener;
     private float lastResult;
     private TextView tvRes;
-    //float numRes;
     private String zeroCnt = "2";
 
     //bonding the main activity with this fragment (B), Gets context as mainActivity
