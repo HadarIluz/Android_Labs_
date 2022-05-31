@@ -1,6 +1,7 @@
 package com.example.ex7;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 //import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -22,13 +25,26 @@ import java.util.List;
 //my
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountriesViewHolder> {
     //in the < > is the name of the internal class.
-    private final List<Country> countriesList;
+    private ArrayList<Country> countriesList;
     private int selectedRow = -1;
+
+    //-->lab7b:
+    private MainMVVM viewModel;
+    private Application myContext;
+    private  ICountriesAdapterListener mListener;
+    private CountriesViewHolder viewHolder;
+    private Context mContext;
 
     /*This constructor fills our list named:countriesList with all the
      information we have in a database which is an XML file*/
-    public CountriesAdapter(Context context) {
-        this.countriesList = CountryXMLParser.parseCountries(context);
+    public CountriesAdapter(Application application, Context context) {
+        countriesList = CountryXMLParser.parseCountries(context);
+        //-->lab7b:
+        myContext = application;
+        mContext = context;
+        viewModel = MainMVVM.getInstance(myContext);
+        countriesList = viewModel.getCountriesLiveData().getValue();
+        viewModel = MainMVVM.getInstance(application);
     }
 
     /* ##########_3 functions from Adapter abstract class_##########*/
@@ -42,31 +58,77 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     * and sent it to the constructor*/
     @Override
     public CountriesViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+        mListener = (ICountriesAdapterListener)parent.getContext();//-->lab7b:
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View countryView = inflater.inflate(R.layout.country_row_frag, parent, false);
-        return new CountriesViewHolder(countryView);
+        viewHolder = new CountriesViewHolder(countryView);
+
+         return viewHolder;
     }
 
     /*This function gets 1.the 'countryViewHolder' that we want to fill with all the data
     * and 2. the location in the data structure that from there(from the location in the array) we take the data.*/
     @Override
     public void onBindViewHolder(CountriesViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.bindData(countriesList.get(position));
+        Country country = countriesList.get(position);
 
-        // This listener will change the color of selected row
-        holder.row_linearLayout.setOnClickListener(new View.OnClickListener() {
+        //-->Lab7b: OBSERVE
+        // Here we will observe and update the selected row
+        Observer<Integer> observeSelectedIndex = new Observer<Integer>() {
             @Override
-            public void onClick(View view) {
-                selectedRow = position;
-                notifyDataSetChanged();//notify there is change and do refresh.
+            public void onChanged(Integer index) {
+                selectedRow = index;
             }
-        });
+        };
+        viewModel.getPositionSelected().observe((LifecycleOwner)mContext, observeSelectedIndex);
 
         if(selectedRow == position){
             holder.row_linearLayout.setBackgroundColor(Color.parseColor("#EC96EC"));
         }else{
             holder.row_linearLayout.setBackgroundColor(Color.parseColor("#E4E4E4"));
         }
+
+        // This listener will change the color of selected row
+        holder.row_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedRow = position;
+                notifyItemChanged(selectedRow);
+                notifyDataSetChanged();//notify there is change and do refresh.
+                viewModel.setItemSelect(country);
+                viewModel.setPositionSelected(selectedRow);
+                mListener.countryClicked();
+            }
+        });
+
+        //Long Press
+        holder.row_linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                int position = holder.getAdapterPosition();
+                System.out.println(getItemCount());
+                countriesList.remove(position);
+
+
+                viewModel.setCountryLiveData(countriesList);
+
+                // we must set it -1 because the item was removed and this will help us to remove info data from fragment
+                viewModel.setPositionSelected(-1);
+
+                viewModel.setItemSelect(null);
+
+                // this logic will keep the selected row select when change the position index
+                if (position < selectedRow){
+                    selectedRow--;
+                } else if (position == selectedRow){
+                    selectedRow = -1;
+                }
+                notifyDataSetChanged();
+                return true;
+            }
+        });
+
+        holder.bindData(country);
     }
 
     /*3.This function return how data from this specific type there is in the database */
@@ -81,6 +143,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     }
     /* ##########_3 functions from Adapter abstract class_##########*/
 
+
+
     /* @@@@@@@@@@@@@@@@@@@@@@@@@@@_Internal_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
     // Each row in RecyclerView will get reference of this CountriesViewHolder
     // *** Include the function that can remove the row
@@ -91,6 +155,10 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         private final TextView nameTextView;
         private final TextView  populationTextView;
         private LinearLayout row_linearLayout;
+
+        public LinearLayout getRow(){
+            return row_linearLayout;
+        }
 
         public CountriesViewHolder( View itemView) {
             super(itemView);
@@ -103,27 +171,37 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             //*****************************************************************************************
             // This listener function call the function removeItem -> wil remove item from the ArrayList***
             //**************************************************************************************
-            countryItem.setOnLongClickListener(view -> {
-                removeItem(getAdapterPosition());
-                return true;
-            });
+//            countryItem.setOnLongClickListener(view -> {
+//                removeItem(getAdapterPosition());
+//                return true;
+//            });
 
 
         }
 
         //******** This function bind\connect the row widgets with the data
         public void bindData(Country country) {
+            //.getName(),country.getShorty(),country.getFlag()
             flagImageView.setImageResource(getDrawableId(context, country.getFlag()));
             nameTextView.setText(country.getName());
             populationTextView.setText(country.getShorty());
         }
 
-        private void removeItem(int position) {
-            countriesList.remove(position);
-            notifyItemRemoved(position);// ****** this notify to the recycle that there is change in data base
-        }
+//        private void removeItem(int position) {
+//            countriesList.remove(position);
+//            notifyItemRemoved(position);// ****** this notify to the recycle that there is change in data base
+//        }
     }
     /* @@@@@@@@@@@@@@@@@@@@@@@@@@@End_Of_Private_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+    public int getSelectedRow (){
+        return selectedRow;
+    }
+
+    public CountriesViewHolder getViewHolder(){
+        return viewHolder;
+    }
+
 
     private static int getDrawableId(Context context, String drawableName) {
         Resources resources = context.getResources();
@@ -132,7 +210,10 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
 
 
 
-
+    //-->lab7b:
+    public interface ICountriesAdapterListener {
+        void countryClicked();
+    }
 
 
 
