@@ -102,12 +102,15 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         });
 
         //Long Press
+        //*****************************************************************************************
+        // This listener function call the function removeItem -> wil remove row item from the ArrayList
+        //*****************************************************************************************
         holder.row_linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 int position = holder.getAdapterPosition();
                 System.out.println(getItemCount());
-                countriesList.remove(position);
+                countriesList.remove(position);// ****** this notify to the recycle that there is change in data base
 
 
                 viewModel.setCountryLiveData(countriesList);
@@ -168,15 +171,6 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             nameTextView        = itemView.findViewById(R.id.countryNameTextView);
             populationTextView  = itemView.findViewById(R.id.countryPopulationTextView);
             row_linearLayout        = itemView.findViewById(R.id.country_row_frag);
-            //*****************************************************************************************
-            // This listener function call the function removeItem -> wil remove item from the ArrayList***
-            //**************************************************************************************
-//            countryItem.setOnLongClickListener(view -> {
-//                removeItem(getAdapterPosition());
-//                return true;
-//            });
-
-
         }
 
         //******** This function bind\connect the row widgets with the data
@@ -186,11 +180,6 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             nameTextView.setText(country.getName());
             populationTextView.setText(country.getShorty());
         }
-
-//        private void removeItem(int position) {
-//            countriesList.remove(position);
-//            notifyItemRemoved(position);// ****** this notify to the recycle that there is change in data base
-//        }
     }
     /* @@@@@@@@@@@@@@@@@@@@@@@@@@@End_Of_Private_Class_@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
@@ -207,7 +196,6 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         Resources resources = context.getResources();
         return resources.getIdentifier(drawableName, "drawable", context.getPackageName());
     }
-
 
 
     //-->lab7b:

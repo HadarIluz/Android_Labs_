@@ -50,16 +50,16 @@ public class CountryFragment extends Fragment  {
 
 
 
-////___TODOl: check if i need to delete this function.
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        //this connect our mainactivity with the B fragment when the context var is the mainactivity
-//        try{
-//            this.listener = (CountryFragmentListener)context;
-//        }catch(ClassCastException e){}
-//        super.onAttach(context);
-//    }
 
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        //this connect our mainactivity with the B fragment when the context var is the mainactivity
+        try{
+            this.listener = (CountryFragmentListener)context;
+        }catch(ClassCastException e){}
+        super.onAttach(context);
+    }
 
     //the interface of this fragment that include the methods
     public interface CountryFragmentListener{

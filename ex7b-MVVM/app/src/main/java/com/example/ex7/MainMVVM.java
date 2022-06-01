@@ -3,6 +3,7 @@ package com.example.ex7;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,7 +11,7 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 /*MVVM- Model0View-ViewModel*/
-public class MainMVVM extends ViewModel {
+public class MainMVVM extends AndroidViewModel {
     private static MainMVVM instance;
 
     // ******* The observable vars *********************
@@ -25,7 +26,7 @@ public class MainMVVM extends ViewModel {
     // *****************************
 
     public MainMVVM(@NonNull Application application) {
-        //super(application);
+        super(application);
         // call your Rest API in init method
         init(application);
     }
