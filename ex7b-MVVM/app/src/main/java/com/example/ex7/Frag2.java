@@ -12,8 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+//my
 public class Frag2  extends Fragment {
 
+    //note: fragments should not hold LiveData instances because his role is to display data, not hold state.
     private TextView detailsTextView;
     private MainMVVM myViewModel;
 
@@ -26,13 +28,7 @@ public class Frag2  extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-/** *
- * https://developer.android.com/topic/libraries/architecture/livedata
- */
 
-/***
- * https://developer.android.com/topic/libraries/architecture/viewmodel.html#sharing
- */
         detailsTextView = view.findViewById(R.id.country_details_text_view);
         myViewModel = MainMVVM.getInstance(getActivity().getApplication());
 
@@ -50,21 +46,26 @@ public class Frag2  extends Fragment {
             }
         };
 
-        // OBSERVE
-        Observer<Integer> indexObserve = new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer index) {
-                Log.i("TEST load", "da");
-                if(index == -1 ){
-                    //detailsTextView.setText("");
-                }
-            }
-        };
 
         myViewModel.getItemSelected().observe(getViewLifecycleOwner(), userListUpdateObserver);
-        myViewModel.getPositionSelected().observe(getViewLifecycleOwner(), indexObserve);
 
         super.onViewCreated(view, savedInstanceState);
 
     }
 }
+
+
+
+
+
+
+
+
+
+/** *
+ * https://developer.android.com/topic/libraries/architecture/livedata
+ */
+
+/***
+ * https://developer.android.com/topic/libraries/architecture/viewmodel.html#sharing
+ */

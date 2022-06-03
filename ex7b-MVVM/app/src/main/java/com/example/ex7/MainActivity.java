@@ -12,13 +12,14 @@ import android.view.MenuItem;
 //my
 public class MainActivity extends AppCompatActivity implements CountriesAdapter.ICountriesAdapterListener {
 
-    //-->lab 7b: this class now implements CountriesAdapter.ICountriesAdapterListener
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+    //-->lab 7b: this class now implements CountriesAdapter.ICountriesAdapterListener
     @Override
     public void countryClicked() {
         Frag2 frag2;

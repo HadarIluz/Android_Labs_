@@ -19,6 +19,8 @@ public class CountryFragment extends Fragment  {
     CountryFragmentListener listener; // hold the mainActivity reference
     private CountriesAdapter countriesAdapter;
 
+    //Application object is an object whose lifecycle is same as our Application.
+    // When Application starts this object is created automatically by Android Framework.
     private Application application;
     private MainMVVM viewModel;
 

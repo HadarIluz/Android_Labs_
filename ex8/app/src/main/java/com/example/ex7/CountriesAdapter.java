@@ -95,7 +95,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
                 selectedRow = position;
                 notifyItemChanged(selectedRow);
                 notifyDataSetChanged();//notify there is change and do refresh.
-                viewModel.setItemSelect(country);
+                viewModel.setItemSelect(country);// setItemSelect(country);
                 viewModel.setPositionSelected(selectedRow);
                 mListener.countryClicked();
             }

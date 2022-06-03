@@ -109,15 +109,15 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             @Override
             public boolean onLongClick(View view) {
                 int position = holder.getAdapterPosition();
-                System.out.println(getItemCount());
+                //System.out.println(getItemCount());
                 countriesList.remove(position);// ****** this notify to the recycle that there is change in data base
 
-
+                //-->update the liveData variable with the new countries list after the remove.
                 viewModel.setCountryLiveData(countriesList);
 
                 // we must set it -1 because the item was removed and this will help us to remove info data from fragment
                 viewModel.setPositionSelected(-1);
-
+                //-->now we don`t hold data about row because we removed the one we press long.
                 viewModel.setItemSelect(null);
 
                 // this logic will keep the selected row select when change the position index
@@ -131,7 +131,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
             }
         });
 
-        holder.bindData(country);
+        holder.bindData(country); // here we do set to all the data to the row we hold.
     }
 
     /*3.This function return how data from this specific type there is in the database */
